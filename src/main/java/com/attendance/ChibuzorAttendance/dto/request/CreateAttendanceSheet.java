@@ -1,6 +1,6 @@
-package com.attendance.ChibuzorAttendance.dto;
+package com.attendance.ChibuzorAttendance.dto.request;
 
-import com.attendance.ChibuzorAttendance.data.models.Attendee;
+import com.attendance.ChibuzorAttendance.data.models.Department;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,6 +12,6 @@ import java.util.List;
 
 public class CreateAttendanceSheet {
     private LocalDateTime date;
-    private List<Attendee> attendees;
+    private String departmentName;
 
 }

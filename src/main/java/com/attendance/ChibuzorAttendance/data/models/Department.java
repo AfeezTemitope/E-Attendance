@@ -6,22 +6,21 @@ import lombok.Setter;
 
 import java.util.List;
 
+import static jakarta.persistence.GenerationType.AUTO;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Setter
 @Getter
 @Entity
-public class AttendanceUser {
+public class Department {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
     @Column(nullable = false, unique = true)
-    private String username;
+    private String departmentName;
 
     @Column(nullable = false)
     private String password;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<AttendanceSheet> sheets;
+    
 }

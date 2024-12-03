@@ -1,9 +1,9 @@
 package com.attendance.ChibuzorAttendance.service;
 
-import com.attendance.ChibuzorAttendance.Exception.AttendanceUserException;
-import com.attendance.ChibuzorAttendance.dto.CreateAttendanceSheet;
-import com.attendance.ChibuzorAttendance.dto.CreateAttendanceSheetResponse;
+import com.attendance.ChibuzorAttendance.Exception.DepartmentNotFoundException;
+import com.attendance.ChibuzorAttendance.dto.request.CreateAttendanceSheet;
+import com.attendance.ChibuzorAttendance.dto.response.CreateAttendanceSheetResponse;
 
 public interface AttendanceSheetService {
-    CreateAttendanceSheetResponse createAttendanceSheet(CreateAttendanceSheet createAttendanceSheet, Long id) throws AttendanceUserException;
+    CreateAttendanceSheetResponse createAttendanceSheet(CreateAttendanceSheet createAttendanceSheet) throws DepartmentNotFoundException;
 }
