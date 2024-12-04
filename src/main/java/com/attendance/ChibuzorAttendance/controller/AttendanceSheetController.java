@@ -42,7 +42,7 @@ public class AttendanceSheetController {
         }
     }
 
-    @GetMapping
+    @PostMapping("loginDepartment/")
     public ResponseEntity<?> getAllAttendanceSheets(@RequestBody LoginDepartmentRequest request) {
         try{
             return new ResponseEntity<>(departmentService.loginDepartment(request), HttpStatus.OK);
