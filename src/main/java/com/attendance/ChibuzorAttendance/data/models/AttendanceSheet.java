@@ -21,6 +21,6 @@ public class AttendanceSheet {
     private LocalDateTime date;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "department_id", nullable = false)
     private Department department;
 }

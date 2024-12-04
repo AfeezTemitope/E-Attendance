@@ -2,6 +2,7 @@ package com.attendance.ChibuzorAttendance.data.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.DynamicUpdate;
 
 import java.time.LocalDateTime;
 
@@ -10,6 +11,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Getter
 @Setter
 @Entity
+@DynamicUpdate
 public class Attendee {
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -28,7 +30,6 @@ public class Attendee {
 
     private Boolean isPresent = false;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "sheet_id", nullable = false)
-    private AttendanceSheet sheet;
+    private String departmentName;
+
 }

@@ -1,6 +1,7 @@
 package com.attendance.ChibuzorAttendance.service;
 
 import com.attendance.ChibuzorAttendance.Exception.DepartmentNotFoundException;
+import com.attendance.ChibuzorAttendance.Exception.UserAlreadyExistException;
 import com.attendance.ChibuzorAttendance.dto.response.CreateDepartmentResponse;
 import com.attendance.ChibuzorAttendance.dto.request.CreateDepartmentRequest;
 import org.junit.jupiter.api.Test;
@@ -18,7 +19,7 @@ class DepartmentServiceImplTest {
     private DepartmentService attendanceUserService;
 
     @Test
-    void testThatDepartmentIsCreated() throws DepartmentNotFoundException {
+    void testThatDepartmentIsCreated() throws DepartmentNotFoundException, UserAlreadyExistException {
     CreateDepartmentRequest createAttendanceUser = new CreateDepartmentRequest();
     createAttendanceUser.setDepartmentName("Chibuzor");
     createAttendanceUser.setPassword("Chibuzor");
