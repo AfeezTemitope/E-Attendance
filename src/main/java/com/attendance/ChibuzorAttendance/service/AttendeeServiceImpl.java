@@ -65,7 +65,7 @@ public class AttendeeServiceImpl implements AttendeeService{
 
     @Override
     public GetAttendeeResponse getAllByDepartment(GetAttendeeByDepartment getRequest) {
-        List<Attendee> relatedAttendees = attendeeRepo.findAllByDepartmentNameIgnoreCase(getRequest.getDepartment());
+        List<Attendee> relatedAttendees = attendeeRepo.findAllByDepartmentNameIgnoreCase(getRequest.getDepartmentName());
         GetAttendeeResponse response = new GetAttendeeResponse();
         response.setAttendees(relatedAttendees);
         response.setMessage("Successful");

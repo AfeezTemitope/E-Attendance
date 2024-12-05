@@ -32,4 +32,5 @@ public class Attendee {
 
     private String departmentName;
 
+
 }

@@ -5,7 +5,6 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class GetAttendeeByDepartment {
-    private String departmentName;
-
+public class DeleteSheetRequest {
+    private Long id;
 }

@@ -79,7 +79,7 @@ public class AttendeeServiceTest {
         attendanceService.registerAttendee(request2);
 
         GetAttendeeByDepartment getRequest = new GetAttendeeByDepartment();
-        getRequest.setDepartment("TItans");
+        getRequest.setDepartmentName("TItans");
         GetAttendeeResponse getResponse = attendanceService.getAllByDepartment(getRequest);
         assertEquals("Successful",getResponse.getMessage());
         assertEquals(2,getResponse.getAttendees().size());

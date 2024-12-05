@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class GetAttendeeByDepartment {
-    private String departmentName;
-
+public class UpdateSheetRequest {
+    private Long attendeeId;
+    private boolean isPresent;
 }

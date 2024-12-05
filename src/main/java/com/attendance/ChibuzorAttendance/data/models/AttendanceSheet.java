@@ -20,7 +20,8 @@ public class AttendanceSheet {
     @Column(nullable = false)
     private LocalDateTime date;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "department_id", nullable = false)
-    private Department department;
+    @JoinColumn()
+    @OneToMany(cascade = CascadeType.PERSIST)
+    private List<Attendee> attendees;
+    private String departmentName;
 }
