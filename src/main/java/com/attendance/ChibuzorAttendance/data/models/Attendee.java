@@ -28,7 +28,7 @@ public class Attendee {
 
     private LocalDateTime signedInTime;
 
-    private Boolean isPresent = false;
+    private boolean isPresent;
 
     private String departmentName;
 

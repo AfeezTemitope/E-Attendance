@@ -4,6 +4,7 @@ import com.attendance.ChibuzorAttendance.Exception.AttendanceSheetNotFoundExcept
 import com.attendance.ChibuzorAttendance.Exception.AttendeeNotFoundException;
 import com.attendance.ChibuzorAttendance.Exception.DepartmentNotFoundException;
 import com.attendance.ChibuzorAttendance.data.models.AttendanceSheet;
+import com.attendance.ChibuzorAttendance.data.models.Attendee;
 import com.attendance.ChibuzorAttendance.data.repositories.AttendanceSheetRepository;
 import com.attendance.ChibuzorAttendance.dto.request.*;
 import com.attendance.ChibuzorAttendance.dto.response.*;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -29,9 +31,9 @@ public class SheetServiceImpl implements AttendanceSheetService {
 
         GetAttendeeResponse foundAttendees = attendeeService.getAllByDepartment(getAttendeeByDepartment);
         AttendanceSheet attendanceSheet = new AttendanceSheet();
-        System.out.println(foundAttendees.getAttendees().toString());
             attendanceSheet.setDate(LocalDateTime.now());
             attendanceSheet.setDepartmentName(createAttendanceSheet.getDepartmentName());
+            markAttendeesAbsent(foundAttendees.getAttendees());
             attendanceSheet.setAttendees(foundAttendees.getAttendees());
             attendanceSheet  = attendanceSheetRepository.save(attendanceSheet);
 
@@ -47,7 +49,7 @@ public class SheetServiceImpl implements AttendanceSheetService {
     public UpdateSheetResponse updateAttendanceSheet(UpdateSheetRequest request) throws AttendeeNotFoundException {
         UpdateAttendeeRequest update = new UpdateAttendeeRequest();
         update.setAttendeeId(request.getAttendeeId());
-        update.setPresent(request.isPresent());
+        update.setPresent(request.getIsPresent());
         UpdateAttendeeResponse updateResponse = attendeeService.updateAttendee(update);
         UpdateSheetResponse response = new UpdateSheetResponse();
         response.setId(updateResponse.getAttendeeId());
@@ -63,6 +65,13 @@ public class SheetServiceImpl implements AttendanceSheetService {
         DeleteSheetResponse deleteSheetResponse = new DeleteSheetResponse();
         deleteSheetResponse.setMessage("Sheet Deleted Successfully");
         return  deleteSheetResponse;
+    }
+
+    private void markAttendeesAbsent(List<Attendee> attendees) {
+        for( Attendee attendee : attendees) {
+            attendee.setPresent(false);
+            attendee.setSignedInTime(null);
+        }
     }
 
 

@@ -1,6 +1,7 @@
 package com.attendance.ChibuzorAttendance.service;
 
 import com.attendance.ChibuzorAttendance.Exception.AttendeeNotFoundException;
+import com.attendance.ChibuzorAttendance.Exception.DepartmentNotFoundException;
 import com.attendance.ChibuzorAttendance.Exception.SecretIdAlreadyExistException;
 import com.attendance.ChibuzorAttendance.dto.request.CreateAttendeeRequest;
 import com.attendance.ChibuzorAttendance.dto.request.DeleteAttendeeRequest;
@@ -27,7 +28,7 @@ public class AttendeeServiceTest {
     private AttendeeService attendanceService;
 
     @Test
-    public void testThatAnAttendeeIsCreated() throws SecretIdAlreadyExistException {
+    public void testThatAnAttendeeIsCreated() throws SecretIdAlreadyExistException, DepartmentNotFoundException {
         CreateAttendeeRequest request = createAttendeeRequest();
         RegisterAttendeeResponse response = attendanceService.registerAttendee(request);
         assertNotNull(response);
@@ -44,7 +45,7 @@ public class AttendeeServiceTest {
     }
 
     @Test
-    public void testThatAnAttendeeIsUpdated() throws SecretIdAlreadyExistException, AttendeeNotFoundException {
+    public void testThatAnAttendeeIsUpdated() throws SecretIdAlreadyExistException, AttendeeNotFoundException, DepartmentNotFoundException {
         CreateAttendeeRequest request = createAttendeeRequest();
         RegisterAttendeeResponse response = attendanceService.registerAttendee(request);
         UpdateAttendeeRequest update = new UpdateAttendeeRequest();
@@ -60,7 +61,7 @@ public class AttendeeServiceTest {
 
 
     @Test
-    public  void testThatAttendeeCanBeDeleted() throws SecretIdAlreadyExistException, AttendeeNotFoundException {
+    public  void testThatAttendeeCanBeDeleted() throws SecretIdAlreadyExistException, AttendeeNotFoundException, DepartmentNotFoundException {
         CreateAttendeeRequest request = createAttendeeRequest();
         RegisterAttendeeResponse response = attendanceService.registerAttendee(request);
         DeleteAttendeeRequest delete = new DeleteAttendeeRequest();
@@ -70,13 +71,17 @@ public class AttendeeServiceTest {
     }
 
     @Test
-    public void getAllAttendeeByDepartmentName() throws SecretIdAlreadyExistException {
+    public void getAllAttendeeByDepartmentName() throws SecretIdAlreadyExistException, DepartmentNotFoundException {
         CreateAttendeeRequest request = createAttendeeRequest();
-        RegisterAttendeeResponse response = attendanceService.registerAttendee(request);
+        attendanceService.registerAttendee(request);
         CreateAttendeeRequest request2 = createAttendeeRequest();
         request2.setSecretId("121345");
-        request2.setDepartmentName("TITANS");
+        request2.setDepartmentName("Mavricks");
         attendanceService.registerAttendee(request2);
+        CreateAttendeeRequest request3 = createAttendeeRequest();
+        request3.setSecretId("8787");
+        request3.setDepartmentName("Titans");
+        attendanceService.registerAttendee(request3);
 
         GetAttendeeByDepartment getRequest = new GetAttendeeByDepartment();
         getRequest.setDepartmentName("TItans");

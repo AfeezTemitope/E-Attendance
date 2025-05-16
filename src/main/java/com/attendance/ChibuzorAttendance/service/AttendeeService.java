@@ -1,6 +1,7 @@
 package com.attendance.ChibuzorAttendance.service;
 
 import com.attendance.ChibuzorAttendance.Exception.AttendeeNotFoundException;
+import com.attendance.ChibuzorAttendance.Exception.DepartmentNotFoundException;
 import com.attendance.ChibuzorAttendance.Exception.SecretIdAlreadyExistException;
 import com.attendance.ChibuzorAttendance.dto.request.CreateAttendeeRequest;
 import com.attendance.ChibuzorAttendance.dto.request.DeleteAttendeeRequest;
@@ -13,12 +14,15 @@ import com.attendance.ChibuzorAttendance.dto.response.UpdateAttendeeResponse;
 
 public interface AttendeeService {
 
-    RegisterAttendeeResponse registerAttendee(CreateAttendeeRequest request) throws SecretIdAlreadyExistException;
+    RegisterAttendeeResponse registerAttendee(CreateAttendeeRequest request) throws SecretIdAlreadyExistException, DepartmentNotFoundException;
 
     UpdateAttendeeResponse updateAttendee(UpdateAttendeeRequest update) throws AttendeeNotFoundException;
 
     DeleteAttendeeResponse deleteAttendee(DeleteAttendeeRequest request) throws AttendeeNotFoundException;
 
-    GetAttendeeResponse getAllByDepartment(GetAttendeeByDepartment getRequest);
+    GetAttendeeResponse getAllByDepartment(GetAttendeeByDepartment getRequest) throws DepartmentNotFoundException;
+
+    GetAttendeeResponse getAllAttendee();
+
 }
 

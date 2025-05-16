@@ -40,7 +40,6 @@ public class AttendanceSheetTest {
 
     private static CreateAttendanceSheet createAttendanceSheet() {
         CreateAttendanceSheet createAttendanceSheet = new CreateAttendanceSheet();
-        createAttendanceSheet.setDate(LocalDateTime.now());
         String departmentName = "Titans";
         createAttendanceSheet.setDepartmentName(departmentName);
         return createAttendanceSheet;
@@ -51,7 +50,7 @@ public class AttendanceSheetTest {
         CreateAttendanceSheet createAttendanceSheet = createAttendanceSheet();
         CreateAttendanceSheetResponse createdSheet = attendanceSheetService.createAttendanceSheet(createAttendanceSheet);
         UpdateSheetRequest request = new UpdateSheetRequest();
-        request.setPresent(true);
+        request.setIsPresent(true);
         request.setAttendeeId(createdSheet.getAttendees().get(1).getId());
         UpdateSheetResponse response = attendanceSheetService.updateAttendanceSheet(request);
         assertEquals(response.getMessage(), "sheet updated");

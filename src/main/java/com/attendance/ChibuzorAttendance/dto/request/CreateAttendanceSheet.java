@@ -11,7 +11,6 @@ import java.util.List;
 @Getter
 
 public class CreateAttendanceSheet {
-    private LocalDateTime date;
     private String departmentName;
 
 }

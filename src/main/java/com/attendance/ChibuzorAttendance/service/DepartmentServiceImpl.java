@@ -30,7 +30,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         }
         Department newUser = new Department();
         newUser.setDepartmentName(createAttendanceDepartment.getDepartmentName());
-        newUser.setPassword(createAttendanceDepartment.getPassword());
+//        newUser.setPassword(createAttendanceDepartment.getPassword());
         newUser = departmentRepository.save(newUser);
         CreateDepartmentResponse response = new CreateDepartmentResponse();
         response.setDepartmentName(newUser.getDepartmentName());
@@ -52,13 +52,14 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public LoginResponse loginDepartment(LoginDepartmentRequest request) throws DepartmentNotFoundException, WrongPasswordException {
-        GetDepartmentResponse foundDepartment = getDepartment(request.getDepartment());
-        if(foundDepartment.getDepartment().getPassword().equalsIgnoreCase(request.getPassword())){
-            LoginResponse response = new LoginResponse();
-            response.setMessage("Login successful");
-            return response;
-        }
-        throw new WrongPasswordException("wrong password");
+//        GetDepartmentResponse foundDepartment = getDepartment(request.getDepartment());
+//        if(foundDepartment.getDepartment().getPassword().equalsIgnoreCase(request.getPassword())){
+//            LoginResponse response = new LoginResponse();
+//            response.setMessage("Login successful");
+//            return response;
+//        }
+//        throw new WrongPasswordException("wrong password");
+        return null;
     }
 
 }

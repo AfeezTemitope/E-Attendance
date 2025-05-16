@@ -10,7 +10,6 @@ public class UpdateAttendeeRequest {
     private String firstName;
     private String lastName;
     private String secretId;
-    private String signIn;
     private boolean present;
     private String departmentName;
 

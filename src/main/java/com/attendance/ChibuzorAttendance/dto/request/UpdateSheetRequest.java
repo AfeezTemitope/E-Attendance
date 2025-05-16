@@ -7,5 +7,5 @@ import lombok.Setter;
 @Getter
 public class UpdateSheetRequest {
     private Long attendeeId;
-    private boolean isPresent;
+    private Boolean isPresent;
 }
